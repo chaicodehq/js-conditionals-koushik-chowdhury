@@ -30,4 +30,23 @@
  */
 export function calculateShipping(weight, country, orderTotal) {
   // Your code here
+  if (weight <= 0 || orderTotal < 0) {
+    return -1
+  }
+  let domesticShippingCost = weight <= 1 ? 5 : weight <= 5 ? 10 : 15;
+  let interShippingCost = weight <= 1 ? 15 : weight <= 5 ? 25 : 40;
+
+  if (country === 'US') {
+    if (orderTotal > 50) {
+      return 0
+    } else {
+      return domesticShippingCost
+    }
+  } else {
+    if (orderTotal > 100) {
+      return 0
+    } else {
+      return interShippingCost
+    }
+  }
 }
